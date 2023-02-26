@@ -1,7 +1,7 @@
 .inputMain {
   border: 2px solid red;
   width: 100vw;
-  height: 100vh;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;

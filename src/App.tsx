@@ -1,10 +1,10 @@
 import React from 'react';
-import CreateAuthor from './components/author/createAuthor/CreateAuthor';
+import AuthorComponent from './components/author/index/Index';
 
 const App = () => {
   return (
     <div>
-      <CreateAuthor />
+      <AuthorComponent />
     </div>
   );
 };
