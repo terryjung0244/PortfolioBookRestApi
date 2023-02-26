@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
+import CreateAuthor from './components/author/createAuthor/CreateAuthor';
 
 const App = () => {
   return (
     <div>
-      App
+      <CreateAuthor />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
