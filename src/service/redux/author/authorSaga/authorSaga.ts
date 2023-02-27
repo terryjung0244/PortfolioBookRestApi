@@ -4,11 +4,16 @@ import { AUTHOR_ACTIONS } from '../../../const';
 import {
   createAuthorFailure,
   createAuthorSuccess,
+  getAllAuthorFailure,
+  getAllAuthorSuccess,
 } from '../authorAction/authorAction';
-import { CreateAuthorRequestType } from '../authorAction/authorAction.interface';
+import {
+  CreateAuthorRequestType,
+  GetAllAuthorRequestType,
+} from '../authorAction/authorAction.interface';
 import { CustomAuthorResultType } from './authorSaga.interface';
 
-const { CREATE_AUTHOR_REQUEST } = AUTHOR_ACTIONS;
+const { CREATE_AUTHOR_REQUEST, GET_ALL_AUTHOR_REQUEST } = AUTHOR_ACTIONS;
 
 const addDelay = () => {
   return new Promise((resolve, reject) => {
@@ -38,8 +43,25 @@ function* createAuthorApi(action: CreateAuthorRequestType): any {
   }
 }
 
-export function* authorSagaWatcher() {
-  yield takeLatest(CREATE_AUTHOR_REQUEST, createAuthorApi);
+function* getAllAuthorApi(action: GetAllAuthorRequestType): any {
+  try {
+    console.log(action);
+    const authorResult: CustomAuthorResultType = yield callFetch(
+      '/author/getAllAuthor',
+      'GET',
+      null,
+    );
+    if (authorResult.statusCode === 200) {
+      yield put(getAllAuthorSuccess(authorResult));
+    } else {
+      yield put(getAllAuthorFailure(authorResult.message));
+    }
+  } catch (err) {
+    console.log(err);
+  }
 }
 
-// https://us-east-2.aws.data.mongodb-api.com/app/data-mzwdn/endpoint/data/v1
+export function* authorSagaWatcher() {
+  yield takeLatest(CREATE_AUTHOR_REQUEST, createAuthorApi);
+  yield takeLatest(GET_ALL_AUTHOR_REQUEST, getAllAuthorApi);
+}

@@ -1,9 +1,12 @@
+/* eslint-disable prettier/prettier */
 import { AUTHOR_ACTIONS } from '../../../const';
 import { CustomAuthorResultType } from '../authorSaga/authorSaga.interface';
 import {
   CreateAuthorFailureType,
   CreateAuthorRequestType,
   CreateAuthorSuccessType,
+  GetAllAuthorFailureType,
+  GetAllAuthorSuccessType,
   InputCreateAuthorType,
 } from './authorAction.interface';
 
@@ -52,16 +55,16 @@ export const getAllAuthorRequest = () => {
   };
 };
 
-export const getAllAuthorSuccess = () => {
+export const getAllAuthorSuccess = (dataFromServer: CustomAuthorResultType): GetAllAuthorSuccessType => {
   return {
     type: GET_ALL_AUTHOR_SUCCESS,
-    payload: null,
+    payload: dataFromServer,
   };
 };
 
-export const getAllAuthorFailure = () => {
+export const getAllAuthorFailure = (dataFromServer: string): GetAllAuthorFailureType => {
   return {
     type: GET_ALL_AUTHOR_FAILURE,
-    payload: null,
+    payload: dataFromServer,
   };
 };

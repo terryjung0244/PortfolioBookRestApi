@@ -1,6 +1,10 @@
 import { apiBaseAddress } from './localHostAddress';
 
-export const callFetch = async (endPoint: string, method: string, body: any) => {
+export const callFetch = async (
+  endPoint: string,
+  method: string,
+  body: any,
+) => {
   console.log(body);
   return await fetch(apiBaseAddress() + endPoint, {
     method,

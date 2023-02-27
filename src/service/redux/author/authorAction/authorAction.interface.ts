@@ -41,12 +41,12 @@ export interface GetAllAuthorRequestType {
 
 export interface GetAllAuthorSuccessType {
   type: typeof GET_ALL_AUTHOR_SUCCESS;
-  payload: null;
+  payload: CustomAuthorResultType;
 }
 
 export interface GetAllAuthorFailureType {
   type: typeof GET_ALL_AUTHOR_FAILURE;
-  payload: null;
+  payload: string;
 }
 
 // ***** Combine Actions *****
@@ -54,4 +54,7 @@ export type AuthorActionsType =
   | AnyAction
   | CreateAuthorRequestType
   | CreateAuthorSuccessType
-  | CreateAuthorFailureType;
+  | CreateAuthorFailureType
+  | GetAllAuthorRequestType
+  | GetAllAuthorSuccessType
+  | GetAllAuthorFailureType;
