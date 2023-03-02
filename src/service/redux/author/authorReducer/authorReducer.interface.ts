@@ -9,4 +9,5 @@ export interface AuthorState {
   message: string;
   error: Error | string | null;
   authorResult: AuthorType[];
+  selectedAuthorId: string;
 }

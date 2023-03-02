@@ -1,13 +1,21 @@
 /* eslint-disable prettier/prettier */
+import { AuthorUpdateType } from '../../../../components/author/updateAuthor/updateAuthor.interface';
 import { AUTHOR_ACTIONS } from '../../../const';
 import { CustomAuthorResultType } from '../authorSaga/authorSaga.interface';
 import {
   CreateAuthorFailureType,
   CreateAuthorRequestType,
   CreateAuthorSuccessType,
+  DeleteAuthorFailureType,
+  DeleteAuthorRequestType,
+  DeleteAuthorSuccessType,
   GetAllAuthorFailureType,
   GetAllAuthorSuccessType,
   InputCreateAuthorType,
+  SelectedAuthorIdType,
+  UpdateAuthorFailureType,
+  UpdateAuthorRequestType,
+  UpdateAuthorSuccessType,
 } from './authorAction.interface';
 
 const {
@@ -17,9 +25,17 @@ const {
   GET_ALL_AUTHOR_REQUEST,
   GET_ALL_AUTHOR_SUCCESS,
   GET_ALL_AUTHOR_FAILURE,
+  SELECTED_AUTHOR_ID,
+  UPDATE_AUTHOR_REQUEST,
+  UPDATE_AUTHOR_SUCCESS,
+  UPDATE_AUTHOR_FAILURE,
+  DELETE_AUTHOR_REQUEST,
+  DELETE_AUTHOR_SUCCESS,
+  DELETE_AUTHOR_FAILURE
 } = AUTHOR_ACTIONS;
 
-//***** Create Author *****
+//***** CREATE AUTHOR *****//
+
 export const createAuthorRequest = (
   inputCreateAuthor: InputCreateAuthorType,
 ): CreateAuthorRequestType => {
@@ -47,7 +63,8 @@ export const createAuthorFailure = (
   };
 };
 
-//***** Get All Author *****
+//***** GET ALL AUTHOR *****//
+
 export const getAllAuthorRequest = () => {
   return {
     type: GET_ALL_AUTHOR_REQUEST,
@@ -68,3 +85,56 @@ export const getAllAuthorFailure = (dataFromServer: string): GetAllAuthorFailure
     payload: dataFromServer,
   };
 };
+
+export const getSelectedAuthorId = (selectedAuthorId: string): SelectedAuthorIdType => {
+  return {
+    type: SELECTED_AUTHOR_ID,
+    payload: selectedAuthorId
+  }
+}
+
+// ***** UPDATE AUTHOR ***** //
+
+export const updateAuthorRequest = (newInputData: AuthorUpdateType): UpdateAuthorRequestType => {
+  return {
+    type: UPDATE_AUTHOR_REQUEST,
+    payload: newInputData,
+  };
+};
+
+export const updateAuthorSuccess = (): UpdateAuthorSuccessType => {
+  return {
+    type: UPDATE_AUTHOR_SUCCESS,
+    payload: null,
+  };
+};
+
+export const updateAuthorFailure = (): UpdateAuthorFailureType => {
+  return {
+    type: UPDATE_AUTHOR_FAILURE,
+    payload: null,
+  };
+};
+
+// ***** DELETE AUTHOR ***** // 
+
+export const deleteAuthorRequest = (): DeleteAuthorRequestType => {
+  return {
+    type: DELETE_AUTHOR_REQUEST,
+    payload: null, //보낼값이 없기에 null이라고 적었다. 
+  }
+}
+
+export const deleteAuthorSuccess = (): DeleteAuthorSuccessType => {
+  return {
+    type: DELETE_AUTHOR_SUCCESS,
+    payload: null
+  }
+}
+
+export const deleteAuthorFailure = (): DeleteAuthorFailureType => {
+  return {
+    type: DELETE_AUTHOR_FAILURE,
+    payload: null
+  }
+}

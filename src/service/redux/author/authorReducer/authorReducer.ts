@@ -9,6 +9,13 @@ const {
   GET_ALL_AUTHOR_REQUEST,
   GET_ALL_AUTHOR_SUCCESS,
   GET_ALL_AUTHOR_FAILURE,
+  SELECTED_AUTHOR_ID,
+  UPDATE_AUTHOR_REQUEST,
+  UPDATE_AUTHOR_SUCCESS,
+  UPDATE_AUTHOR_FAILURE,
+  DELETE_AUTHOR_REQUEST,
+  DELETE_AUTHOR_SUCCESS,
+  DELETE_AUTHOR_FAILURE,
 } = AUTHOR_ACTIONS;
 
 const initialState: AuthorState = {
@@ -16,6 +23,7 @@ const initialState: AuthorState = {
   message: '',
   error: null,
   authorResult: [],
+  selectedAuthorId: '',
 };
 
 const authorReducer: Reducer<AuthorState, AuthorActionsType> = (
@@ -43,8 +51,28 @@ const authorReducer: Reducer<AuthorState, AuthorActionsType> = (
       };
     case GET_ALL_AUTHOR_FAILURE:
       return { ...state, loading: false, error: action.payload };
+
+    // SELECTED AUTHOR ID
+    case SELECTED_AUTHOR_ID:
+      return { ...state, selectedAuthorId: action.payload };
+
+    // UPDATE AUTHOR
+    case UPDATE_AUTHOR_REQUEST:
+      return { ...state, loading: true };
+    case UPDATE_AUTHOR_SUCCESS:
+      return { ...state, loading: false };
+    case UPDATE_AUTHOR_FAILURE:
+      return { ...state, loading: false };
     default:
       return state;
+
+    // DELETE AUTHOR
+    case DELETE_AUTHOR_REQUEST:
+      return { ...state, loading: true };
+    case DELETE_AUTHOR_SUCCESS:
+      return { ...state, loading: false };
+    case DELETE_AUTHOR_FAILURE:
+      return { ...state, loading: false };
   }
 };
 

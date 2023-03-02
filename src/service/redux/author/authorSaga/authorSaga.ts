@@ -9,11 +9,18 @@ import {
 } from '../authorAction/authorAction';
 import {
   CreateAuthorRequestType,
+  DeleteAuthorRequestType,
   GetAllAuthorRequestType,
+  UpdateAuthorRequestType,
 } from '../authorAction/authorAction.interface';
 import { CustomAuthorResultType } from './authorSaga.interface';
 
-const { CREATE_AUTHOR_REQUEST, GET_ALL_AUTHOR_REQUEST } = AUTHOR_ACTIONS;
+const {
+  CREATE_AUTHOR_REQUEST,
+  GET_ALL_AUTHOR_REQUEST,
+  UPDATE_AUTHOR_REQUEST,
+  DELETE_AUTHOR_REQUEST,
+} = AUTHOR_ACTIONS;
 
 const addDelay = () => {
   return new Promise((resolve, reject) => {
@@ -61,7 +68,34 @@ function* getAllAuthorApi(action: GetAllAuthorRequestType): any {
   }
 }
 
+function* updateAuthorApi(action: UpdateAuthorRequestType): any {
+  try {
+    const authorResult: CustomAuthorResultType = yield callFetch(
+      '/author/updateAuthor',
+      'PUT',
+      action.payload,
+    );
+    if (authorResult.statusCode === 200) {
+      // yield put(getAllAuthorSuccess(authorResult));
+    } else {
+      // yield put(getAllAuthorFailure(authorResult.message));
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+function* deleteAuthorApi(action: DeleteAuthorRequestType): any {
+  try {
+    yield console.log('saga');
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export function* authorSagaWatcher() {
   yield takeLatest(CREATE_AUTHOR_REQUEST, createAuthorApi);
   yield takeLatest(GET_ALL_AUTHOR_REQUEST, getAllAuthorApi);
+  yield takeLatest(UPDATE_AUTHOR_REQUEST, updateAuthorApi);
+  yield takeLatest(DELETE_AUTHOR_REQUEST, deleteAuthorApi);
 }
