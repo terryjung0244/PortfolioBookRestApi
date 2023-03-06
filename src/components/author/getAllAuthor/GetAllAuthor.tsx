@@ -2,6 +2,7 @@ import React from 'react';
 import { useAppDispatch } from '../../../hook/useAppDispatch';
 import useAppSelector from '../../../hook/useAppSelector';
 import {
+  deleteAuthorRequest,
   getAllAuthorRequest,
   getSelectedAuthorId,
 } from '../../../service/redux/author/authorAction/authorAction';
@@ -17,6 +18,10 @@ const GetAllAuthor = () => {
 
   const onClickGetAllAuthor = () => {
     dispatch(getAllAuthorRequest());
+  };
+
+  const onClickDeleteAuthor = (selectedAuthorId: string) => {
+    dispatch(deleteAuthorRequest(selectedAuthorId));
   };
 
   const getSelectAuthorId = (data: AuthorType) => {
@@ -36,6 +41,11 @@ const GetAllAuthor = () => {
               <button onClick={() => getSelectAuthorId(author)}>
                 Select Id
               </button>
+              {selectedAuthorId && selectedAuthorId === author.id && (
+                <button onClick={() => onClickDeleteAuthor(selectedAuthorId)}>
+                  Delete
+                </button>
+              )}
             </div>
           </div>
         );

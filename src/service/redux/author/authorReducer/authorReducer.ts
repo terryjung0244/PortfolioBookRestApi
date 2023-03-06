@@ -62,7 +62,7 @@ const authorReducer: Reducer<AuthorState, AuthorActionsType> = (
     case UPDATE_AUTHOR_SUCCESS:
       return { ...state, loading: false };
     case UPDATE_AUTHOR_FAILURE:
-      return { ...state, loading: false };
+      return { ...state, loading: false, error: action.payload };
     default:
       return state;
 

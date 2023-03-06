@@ -102,26 +102,26 @@ export const updateAuthorRequest = (newInputData: AuthorUpdateType): UpdateAutho
   };
 };
 
-export const updateAuthorSuccess = (): UpdateAuthorSuccessType => {
+export const updateAuthorSuccess = (dataFromServer: CustomAuthorResultType ): UpdateAuthorSuccessType => {
   return {
     type: UPDATE_AUTHOR_SUCCESS,
-    payload: null,
+    payload: dataFromServer,
   };
 };
 
-export const updateAuthorFailure = (): UpdateAuthorFailureType => {
+export const updateAuthorFailure = (dataFromServer: string): UpdateAuthorFailureType => {
   return {
     type: UPDATE_AUTHOR_FAILURE,
-    payload: null,
+    payload: dataFromServer,
   };
 };
 
 // ***** DELETE AUTHOR ***** // 
 
-export const deleteAuthorRequest = (): DeleteAuthorRequestType => {
+export const deleteAuthorRequest = (SelectedAuthorId: string): DeleteAuthorRequestType => {
   return {
     type: DELETE_AUTHOR_REQUEST,
-    payload: null, //보낼값이 없기에 null이라고 적었다. 
+    payload: SelectedAuthorId, 
   }
 }
 

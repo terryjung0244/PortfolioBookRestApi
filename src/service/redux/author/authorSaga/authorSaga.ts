@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { put, takeLatest } from 'redux-saga/effects';
 import { callFetch } from '../../../api/callFetch';
 import { AUTHOR_ACTIONS } from '../../../const';
@@ -6,6 +7,9 @@ import {
   createAuthorSuccess,
   getAllAuthorFailure,
   getAllAuthorSuccess,
+  updateAuthorFailure,
+  updateAuthorRequest,
+  updateAuthorSuccess,
 } from '../authorAction/authorAction';
 import {
   CreateAuthorRequestType,
@@ -50,7 +54,7 @@ function* createAuthorApi(action: CreateAuthorRequestType): any {
   }
 }
 
-function* getAllAuthorApi(action: GetAllAuthorRequestType): any {
+function* getAllAuthorApi(action?: GetAllAuthorRequestType): any {
   try {
     console.log(action);
     const authorResult: CustomAuthorResultType = yield callFetch(
@@ -76,10 +80,11 @@ function* updateAuthorApi(action: UpdateAuthorRequestType): any {
       action.payload,
     );
     if (authorResult.statusCode === 200) {
-      // yield put(getAllAuthorSuccess(authorResult));
+      yield put(updateAuthorSuccess(authorResult));
     } else {
-      // yield put(getAllAuthorFailure(authorResult.message));
+      yield put(updateAuthorFailure(authorResult.message));
     }
+    yield getAllAuthorApi();
   } catch (err) {
     console.log(err);
   }
@@ -87,7 +92,13 @@ function* updateAuthorApi(action: UpdateAuthorRequestType): any {
 
 function* deleteAuthorApi(action: DeleteAuthorRequestType): any {
   try {
-    yield console.log('saga');
+    const authorResult: CustomAuthorResultType = yield callFetch(
+      `/author/deleteAuthor?authorId=${action.payload}`,
+      'DELETE',
+      null, // 'null' !!!
+    );
+    console.log(authorResult);
+    yield getAllAuthorApi();
   } catch (err) {
     console.log(err);
   }
