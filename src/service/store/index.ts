@@ -3,6 +3,7 @@ import { all } from 'redux-saga/effects';
 import createSagaMiddleware from 'redux-saga';
 import { authorSagaWatcher } from '../redux/author/authorSaga/authorSaga';
 import authorReducer from '../redux/author/authorReducer/authorReducer';
+import { bookReducer } from '../redux/book/bookReducer/bookReducer';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -18,6 +19,7 @@ export const createStore = () =>
     reducer: {
       // validReducer
       authorReducer,
+      bookReducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({ serializableCheck: false }).concat(sagaMiddleware),
