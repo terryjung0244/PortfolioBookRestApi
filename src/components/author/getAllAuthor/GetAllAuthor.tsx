@@ -28,7 +28,9 @@ const GetAllAuthor = () => {
     dispatch(getSelectedAuthorId(data.id));
   };
 
-  console.log(selectedAuthorId);
+  const sendIdForCreateBook = (selectedAuthorId: string) => {
+    console.log(selectedAuthorId);
+  };
 
   return (
     <div className="main">
@@ -46,6 +48,9 @@ const GetAllAuthor = () => {
                   Delete
                 </button>
               )}
+              <button onClick={() => sendIdForCreateBook(author.id)}>
+                For CreateBook
+              </button>
             </div>
           </div>
         );

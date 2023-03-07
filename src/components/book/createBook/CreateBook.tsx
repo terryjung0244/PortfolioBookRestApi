@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import './../createBook/CreateBook.css';
 import InputComp from '../../resuable/inputComp/InputComp';
 import { InputCreateBookType } from './CreateBook.interface';
+// import useAppSelector from '../../../hook/useAppSelector';
 
 const CreateBook = () => {
+  // const { selectedAuthorId } = useAppSelector((state) => state.authorReducer);
   const [inputCreateBook, setInputCreateBook] = useState<InputCreateBookType>({
     title: '',
     content: '',
@@ -14,28 +17,29 @@ const CreateBook = () => {
   };
 
   return (
-    <div>
+    <div className="inputMain">
       <InputComp
-        className=""
+        className="inputContainer"
         placeholder="title"
         name={'title'}
         value={inputCreateBook.title}
         onChange={onChangeCreateBook}
       />
       <InputComp
-        className="content"
+        className="inputContainer"
         placeholder="content"
         name={'content'}
         value={inputCreateBook.content}
         onChange={onChangeCreateBook}
       />
       <InputComp
-        className="genre"
+        className="inputContainer"
         placeholder="genre"
         name={'genre'}
         value={inputCreateBook.genre}
         onChange={onChangeCreateBook}
       />
+      {/* <div>{selectedAuthorId && selectedAuthorId}</div> */}
     </div>
   );
 };
