@@ -1,4 +1,6 @@
+import { CreateBookDataType } from '../../../../components/book/createBook/CreateBook.interface';
 import { BOOK_ACTIONS } from '../../../const';
+import { CustomBookApiResultType } from '../bookSaga/bookSaga.interface';
 import {
   BookSelectedIdType,
   CreateBookFailureType,
@@ -22,23 +24,29 @@ export const sendAuthorIdForCreateBook = (
   };
 };
 
-export const createBookRequest = (): CreateBookRequestType => {
+export const createBookRequest = (
+  inputData: CreateBookDataType,
+): CreateBookRequestType => {
   return {
     type: CREATE_BOOK_REQUEST,
-    payload: null,
+    payload: inputData,
   };
 };
 
-export const createBookSuccess = (): CreateBookSuccessType => {
+export const createBookSuccess = (
+  dataFromServer: CustomBookApiResultType,
+): CreateBookSuccessType => {
   return {
     type: CREATE_BOOK_SUCCESS,
-    payload: null,
+    payload: dataFromServer,
   };
 };
 
-export const createBookFailure = (): CreateBookFailureType => {
+export const createBookFailure = (
+  dataFromServer: CustomBookApiResultType,
+): CreateBookFailureType => {
   return {
     type: CREATE_BOOK_FAILURE,
-    payload: null,
+    payload: dataFromServer,
   };
 };

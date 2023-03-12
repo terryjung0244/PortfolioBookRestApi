@@ -4,6 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import { authorSagaWatcher } from '../redux/author/authorSaga/authorSaga';
 import authorReducer from '../redux/author/authorReducer/authorReducer';
 import { bookReducer } from '../redux/book/bookReducer/bookReducer';
+import { bookSagaWatcher } from '../redux/book/bookSaga/bookSaga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -11,6 +12,7 @@ function* rootSaga() {
   yield all([
     // validSagaWatcher()
     authorSagaWatcher(),
+    bookSagaWatcher(),
   ]);
 }
 
