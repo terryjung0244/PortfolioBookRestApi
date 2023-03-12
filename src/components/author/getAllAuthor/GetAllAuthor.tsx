@@ -7,6 +7,7 @@ import {
   getSelectedAuthorId,
 } from '../../../service/redux/author/authorAction/authorAction';
 import { AuthorType } from '../../../service/redux/author/authorReducer/authorReducer.interface';
+import { sendAuthorIdForCreateBook } from '../../../service/redux/book/bookAction/bookAction';
 import UpdateAuthor from '../updateAuthor/UpdateAuthor';
 import './../getAllAuthor/getAllAuthor.css';
 
@@ -29,7 +30,7 @@ const GetAllAuthor = () => {
   };
 
   const sendIdForCreateBook = (selectedAuthorId: string) => {
-    console.log(selectedAuthorId);
+    dispatch(sendAuthorIdForCreateBook(selectedAuthorId));
   };
 
   return (
