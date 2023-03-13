@@ -3,4 +3,5 @@ export interface BookState {
   message: string;
   error: null;
   selectedAuthorIdForCreateBook: string;
+  bookResult: [];
 }

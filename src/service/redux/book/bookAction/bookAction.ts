@@ -6,6 +6,7 @@ import {
   CreateBookFailureType,
   CreateBookRequestType,
   CreateBookSuccessType,
+  GetAllBookRequestType,
 } from './bookAction.interface';
 
 const {
@@ -13,6 +14,9 @@ const {
   CREATE_BOOK_REQUEST,
   CREATE_BOOK_SUCCESS,
   CREATE_BOOK_FAILURE,
+  GET_ALL_BOOK_REQUEST,
+  GET_ALL_BOOK_SUCCESS,
+  GET_ALL_BOOK_FAILURE,
 } = BOOK_ACTIONS;
 
 export const sendAuthorIdForCreateBook = (
@@ -47,6 +51,28 @@ export const createBookFailure = (
 ): CreateBookFailureType => {
   return {
     type: CREATE_BOOK_FAILURE,
+    payload: dataFromServer,
+  };
+};
+
+// GET ALL BOOKS
+export const getAllBookRequest = (): GetAllBookRequestType => {
+  return {
+    type: GET_ALL_BOOK_REQUEST,
+    payload: null,
+  };
+};
+
+export const getAllBookSuccess = (dataFromServer: CustomBookApiResultType) => {
+  return {
+    type: GET_ALL_BOOK_SUCCESS,
+    payload: dataFromServer,
+  };
+};
+
+export const getAllBookFailure = (dataFromServer: CustomBookApiResultType) => {
+  return {
+    type: GET_ALL_BOOK_FAILURE,
     payload: dataFromServer,
   };
 };
