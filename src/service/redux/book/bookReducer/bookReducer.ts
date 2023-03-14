@@ -38,9 +38,9 @@ export const bookReducer: Reducer<BookState, BookActionsType> = (
       return { ...state, selectedAuthorIdForCreateBook: action.payload };
     // GET ALL BOOKS
     case GET_ALL_BOOK_REQUEST:
-      return { ...state };
+      return { ...state, loading: true };
     case GET_ALL_BOOK_SUCCESS:
-      return { ...state };
+      return { ...state, bookResult: action.payload.result };
     case GET_ALL_BOOK_FAILURE:
       return { ...state };
     default:

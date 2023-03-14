@@ -70,7 +70,9 @@ export const getAllBookSuccess = (dataFromServer: CustomBookApiResultType) => {
   };
 };
 
-export const getAllBookFailure = (dataFromServer: CustomBookApiResultType) => {
+export const getAllBookFailure = (
+  dataFromServer: CustomBookApiResultType | Error,
+) => {
   return {
     type: GET_ALL_BOOK_FAILURE,
     payload: dataFromServer,

@@ -2,10 +2,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 import { callFetch } from '../../../api/callFetch';
 
 import { BOOK_ACTIONS } from '../../../const/index';
-import {
-  getAllAuthorFailure,
-  getAllAuthorSuccess,
-} from '../../author/authorAction/authorAction';
+import {} from '../../author/authorAction/authorAction';
 import {
   createBookFailure,
   createBookSuccess,
@@ -48,6 +45,7 @@ function* createBookApi(action: CreateBookRequestType): any {
 }
 
 function* getAllBookApi(action: GetAllBookRequestType): any {
+  console.log(action);
   try {
     const bookApiResult: CustomBookApiResultType = yield callFetch(
       '/book/getAllBook',
@@ -61,6 +59,7 @@ function* getAllBookApi(action: GetAllBookRequestType): any {
     }
   } catch (err) {
     console.log(err);
+    yield put(getAllBookFailure(err as Error));
   }
 }
 

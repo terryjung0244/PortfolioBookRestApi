@@ -7,8 +7,8 @@ const {
   CREATE_BOOK_FAILURE,
   BOOK_SELECT_ID,
   GET_ALL_BOOK_REQUEST,
-  // GET_ALL_BOOK_SUCCESS,
-  // GET_ALL_BOOK_FAILURE,
+  GET_ALL_BOOK_SUCCESS,
+  GET_ALL_BOOK_FAILURE,
 } = BOOK_ACTIONS;
 
 //SELECT AUTHOR ID FOR CREATE BOOK
@@ -38,9 +38,20 @@ export interface GetAllBookRequestType {
   payload: any;
 }
 
+export interface GetAllBookSuccessType {
+  type: typeof GET_ALL_BOOK_SUCCESS;
+  payload: any;
+}
+
+export interface GetAllBookFailureType {
+  type: typeof GET_ALL_BOOK_FAILURE;
+  payload: any;
+}
 export type BookActionsType =
   | AnyAction
   | CreateBookRequestType
   | CreateBookSuccessType
   | CreateBookFailureType
-  | GetAllBookRequestType;
+  | GetAllBookRequestType
+  | GetAllBookSuccessType
+  | GetAllBookFailureType;
