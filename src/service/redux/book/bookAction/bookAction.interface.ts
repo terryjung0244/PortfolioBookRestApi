@@ -1,4 +1,5 @@
 import { AnyAction } from '@reduxjs/toolkit';
+import { BookStateType } from '../../../../components/book/updateBook/UpdateBook.interface';
 import { BOOK_ACTIONS } from '../../../const';
 
 const {
@@ -9,6 +10,9 @@ const {
   GET_ALL_BOOK_REQUEST,
   GET_ALL_BOOK_SUCCESS,
   GET_ALL_BOOK_FAILURE,
+  UPDATE_BOOK_REQUEST,
+  UPDATE_BOOK_SUCCESS,
+  UPDATE_BOOK_FAILURE,
 } = BOOK_ACTIONS;
 
 //SELECT AUTHOR ID FOR CREATE BOOK
@@ -47,6 +51,13 @@ export interface GetAllBookFailureType {
   type: typeof GET_ALL_BOOK_FAILURE;
   payload: any;
 }
+
+//UPDATE
+export interface UpdateBookRequestType {
+  type: typeof UPDATE_BOOK_REQUEST;
+  payload: BookStateType;
+}
+
 export type BookActionsType =
   | AnyAction
   | CreateBookRequestType
@@ -54,4 +65,5 @@ export type BookActionsType =
   | CreateBookFailureType
   | GetAllBookRequestType
   | GetAllBookSuccessType
-  | GetAllBookFailureType;
+  | GetAllBookFailureType
+  | UpdateBookRequestType;

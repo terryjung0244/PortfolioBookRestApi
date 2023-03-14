@@ -1,5 +1,7 @@
 import { CreateBookDataType } from '../../../../components/book/createBook/CreateBook.interface';
+import { BookStateType } from '../../../../components/book/updateBook/UpdateBook.interface';
 import { BOOK_ACTIONS } from '../../../const';
+import { updateAuthorRequest } from '../../author/authorAction/authorAction';
 import { CustomBookApiResultType } from '../bookSaga/bookSaga.interface';
 import {
   BookSelectedIdType,
@@ -7,6 +9,7 @@ import {
   CreateBookRequestType,
   CreateBookSuccessType,
   GetAllBookRequestType,
+  UpdateBookRequestType,
 } from './bookAction.interface';
 
 const {
@@ -17,6 +20,9 @@ const {
   GET_ALL_BOOK_REQUEST,
   GET_ALL_BOOK_SUCCESS,
   GET_ALL_BOOK_FAILURE,
+  UPDATE_BOOK_REQUEST,
+  UPDATE_BOOK_SUCCESS,
+  UPDATE_BOOK_FAILURE,
 } = BOOK_ACTIONS;
 
 export const sendAuthorIdForCreateBook = (
@@ -76,5 +82,23 @@ export const getAllBookFailure = (
   return {
     type: GET_ALL_BOOK_FAILURE,
     payload: dataFromServer,
+  };
+};
+
+//SEND BOOK ID FOR UPDATE
+export const sendBookIdForUpdate = (selectedId: string): BookSelectedIdType => {
+  return {
+    type: BOOK_SELECT_ID,
+    payload: selectedId,
+  };
+};
+
+//UPDATE
+export const updateBookRequest = (
+  inputUpdateData: BookStateType,
+): UpdateBookRequestType => {
+  return {
+    type: UPDATE_BOOK_REQUEST,
+    payload: inputUpdateData,
   };
 };

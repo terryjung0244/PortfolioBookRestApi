@@ -18,6 +18,7 @@ const initialState: BookState = {
   message: '',
   error: null,
   selectedAuthorIdForCreateBook: '',
+  selectedBookIdForUpdateBook: '',
   bookResult: [],
 };
 
@@ -35,7 +36,12 @@ export const bookReducer: Reducer<BookState, BookActionsType> = (
       return { ...state, loading: false };
     // SELECT AUTHOR ID FOR CREATE BOOK
     case BOOK_SELECT_ID:
-      return { ...state, selectedAuthorIdForCreateBook: action.payload };
+      console.log(action);
+      return {
+        ...state,
+        selectedAuthorIdForCreateBook: action.payload,
+        selectedBookIdForUpdateBook: action.payload,
+      };
     // GET ALL BOOKS
     case GET_ALL_BOOK_REQUEST:
       return { ...state, loading: true };
